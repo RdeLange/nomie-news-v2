@@ -4,6 +4,7 @@
   import { fetchFeed, todaysHeadlines, type Headline } from './feed';
   import { CHOICES, normalise, type Settings, type TapAction } from './settings';
   import { paletteFrom, type Palette } from './palette';
+  import { onPrefsChange } from './prefs-live';
 
   type Cache = { source: string; at: number; items: Array<Omit<Headline, 'date'> & { date: string | null }> };
 
@@ -90,7 +91,8 @@
       addToMoreMenu: true,
       addToWidgets: true,
     });
-    plugin.onRegistered(async () => {
+    onPrefsChange(plugin, () => applyNomieValues());
+  plugin.onRegistered(async () => {
       applyNomieValues();
       await plugin.storage.init();
       settings = normalise(plugin.storage.getItem('settings'));
