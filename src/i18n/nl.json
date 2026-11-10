@@ -14,5 +14,8 @@
  "summaries": "Samenvattingen",
  "times": "Tijden",
  "notReadable": "Dit is geen leesbare feed.",
- "feedUnavailable": "{name} kan nu niet gelezen worden."
+ "feedUnavailable": "{name} kan nu niet gelezen worden.",
+ "langEn": "Engels",
+ "langDe": "Duits",
+ "topicTech": "technologie"
 }

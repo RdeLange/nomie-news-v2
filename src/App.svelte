@@ -136,7 +136,7 @@
     {/if}
   {:else}
     <header class="top"><h1>News</h1></header>
-    <p class="muted">{source.name} · {source.language}</p>
+    <p class="muted">{source.name} · {source.language === 'de' ? t('langDe') : t('langEn')}{source.tech ? ` (${t('topicTech')})` : ''}</p>
 
     {#if status === 'loading'}<p class="muted">{t('loading')}</p>{/if}
     {#if status === 'error'}<section class="panel error">{message}</section>{/if}

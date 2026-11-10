@@ -14,5 +14,8 @@
  "summaries": "Summaries",
  "times": "Times",
  "notReadable": "This is not a readable feed.",
- "feedUnavailable": "{name} could not be read right now."
+ "feedUnavailable": "{name} could not be read right now.",
+ "langEn": "English",
+ "langDe": "German",
+ "topicTech": "technology"
 }

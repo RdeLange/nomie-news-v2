@@ -14,5 +14,8 @@
  "summaries": "Riassunti",
  "times": "Orari",
  "notReadable": "Questo non è un feed leggibile.",
- "feedUnavailable": "{name} non può essere letto in questo momento."
+ "feedUnavailable": "{name} non può essere letto in questo momento.",
+ "langEn": "Inglese",
+ "langDe": "Tedesco",
+ "topicTech": "tecnologia"
 }
