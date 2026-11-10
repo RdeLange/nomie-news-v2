@@ -13,5 +13,6 @@
  "todayOnly": "Alleen vandaag",
  "summaries": "Samenvattingen",
  "times": "Tijden",
- "notReadable": "Dit is geen leesbare feed."
+ "notReadable": "Dit is geen leesbare feed.",
+ "feedUnavailable": "{name} kan nu niet gelezen worden."
 }

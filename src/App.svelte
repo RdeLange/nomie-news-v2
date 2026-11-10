@@ -67,7 +67,8 @@
       showItems(list, at);
     } catch (error) {
       status = 'error';
-      message = `${source.name} could not be read right now. ${(error as Error).message}`;
+      // the browser's own error text is English, so only the translated line is shown
+      message = t('feedUnavailable', { name: source.name });
     }
   };
 

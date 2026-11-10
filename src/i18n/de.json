@@ -13,5 +13,6 @@
  "todayOnly": "Nur heute",
  "summaries": "Zusammenfassungen",
  "times": "Uhrzeiten",
- "notReadable": "Dies ist kein lesbarer Feed."
+ "notReadable": "Dies ist kein lesbarer Feed.",
+ "feedUnavailable": "{name} kann im Moment nicht gelesen werden."
 }
