@@ -1,3 +1,4 @@
+import { t } from './i18n/index.svelte';
 // Reads a feed (RSS 2.0, RSS 1.0 or Atom) into headlines, and picks the ones of today.
 export type Headline = { title: string; link: string; summary: string; date: Date | null };
 
@@ -18,7 +19,7 @@ const plainText = (html: string): string => {
 
 export const parseFeed = (xml: string): Headline[] => {
   const doc = new DOMParser().parseFromString(xml, 'text/xml');
-  if (doc.getElementsByTagName('parsererror').length) throw new Error('This is not a readable feed.');
+  if (doc.getElementsByTagName('parsererror').length) throw new Error(t('notReadable'));
   return [...doc.getElementsByTagName('item'), ...doc.getElementsByTagName('entry')]
     .map((node) => {
       const linkEl = node.getElementsByTagName('link')[0];

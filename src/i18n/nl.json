@@ -1,0 +1,17 @@
+{
+ "loading": "Koppen laden…",
+ "noHeadlinesYet": "Nog geen koppen.",
+ "noToday": "Nog geen koppen van vandaag. Dit zijn de nieuwste.",
+ "updated": "Bijgewerkt {when}",
+ "refresh": "Vernieuwen",
+ "sourceHead": "Bron",
+ "headlinesHead": "Koppen",
+ "tapHead": "Bij tikken op een kop",
+ "readArticle": "Het artikel lezen",
+ "writeNote": "Een notitie schrijven",
+ "showHead": "Tonen",
+ "todayOnly": "Alleen vandaag",
+ "summaries": "Samenvattingen",
+ "times": "Tijden",
+ "notReadable": "Dit is geen leesbare feed."
+}

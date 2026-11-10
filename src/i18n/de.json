@@ -1,0 +1,17 @@
+{
+ "loading": "Schlagzeilen werden geladen …",
+ "noHeadlinesYet": "Noch keine Schlagzeilen.",
+ "noToday": "Noch keine Schlagzeilen von heute. Dies sind die neuesten.",
+ "updated": "Aktualisiert {when}",
+ "refresh": "Aktualisieren",
+ "sourceHead": "Quelle",
+ "headlinesHead": "Schlagzeilen",
+ "tapHead": "Beim Antippen einer Schlagzeile",
+ "readArticle": "Artikel lesen",
+ "writeNote": "Notiz schreiben",
+ "showHead": "Anzeigen",
+ "todayOnly": "Nur heute",
+ "summaries": "Zusammenfassungen",
+ "times": "Uhrzeiten",
+ "notReadable": "Dies ist kein lesbarer Feed."
+}

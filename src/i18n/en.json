@@ -1,0 +1,17 @@
+{
+ "loading": "Loading headlines…",
+ "noHeadlinesYet": "No headlines yet.",
+ "noToday": "No headlines from today yet. These are the newest ones.",
+ "updated": "Updated {when}",
+ "refresh": "Refresh",
+ "sourceHead": "Source",
+ "headlinesHead": "Headlines",
+ "tapHead": "Tapping a headline",
+ "readArticle": "Read the article",
+ "writeNote": "Write a note",
+ "showHead": "Show",
+ "todayOnly": "Today only",
+ "summaries": "Summaries",
+ "times": "Times",
+ "notReadable": "This is not a readable feed."
+}

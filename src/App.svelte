@@ -3,7 +3,8 @@
   import { SOURCES, sourceById } from './sources';
   import { fetchFeed, todaysHeadlines, type Headline } from './feed';
   import { CHOICES, normalise, type Settings, type TapAction } from './settings';
-  import { paletteFrom, type Palette } from './palette';
+  import { paletteFrom, glassFrom, tintTextFrom, dangerTextFrom, type Palette, type Glass } from './palette';
+  import { t, setLanguage } from './i18n/index.svelte';
   import { onPrefsChange } from './prefs-live';
 
   type Cache = { source: string; at: number; items: Array<Omit<Headline, 'date'> & { date: string | null }> };
@@ -11,6 +12,9 @@
   let plugin: any;
   let view = $state<'modal' | 'widget'>('modal');
   let palette = $state<Palette>(paletteFrom(undefined));
+  let glass = $state<Glass>(glassFrom(undefined));
+  let tintText = $state(tintTextFrom(undefined));
+  let dangerText = $state(dangerTextFrom(undefined));
   let scale = $state(1);
   let settings = $state<Settings>(normalise({}));
   let items = $state<Headline[]>([]);
@@ -25,6 +29,10 @@
   const applyNomieValues = () => {
     if (!plugin?.prefs) return;
     palette = paletteFrom(plugin.prefs);
+    setLanguage(plugin.prefs?.language);
+    glass = glassFrom(plugin.prefs);
+    tintText = tintTextFrom(plugin.prefs);
+    dangerText = dangerTextFrom(plugin.prefs);
     scale = plugin.prefs.fontScale || 1;
   };
 
@@ -111,7 +119,7 @@
   });
 </script>
 
-<div class="card" class:widget={view === 'widget'} style="--page: {palette.page}; --card: {palette.card}; --text: {palette.text}; --muted: {palette.textSecondary}; --line: {palette.separator}; --fill: {palette.fill}; --tint: {palette.tint}; --on-tint: {palette.onTint}; --tint-soft: {palette.tintSoft}; --scale: {scale};">
+<div class="card" class:widget={view === 'widget'} style="--page: {palette.page}; --card: {palette.card}; --text: {palette.text}; --muted: {palette.textSecondary}; --line: {palette.separator}; --fill: {palette.fill}; --tint: {palette.tint}; --on-tint: {palette.onTint}; --tint-soft: {palette.tintSoft}; --tint-text: {tintText}; --danger: {dangerText}; --glass-fill: {glass.fill}; --glass-edge: {glass.edge}; --glass-blur: {glass.blur}; --glass-shadow: {glass.shadow}; --scale: {scale};">
   {#if view === 'widget'}
     <div class="head"><span>📰</span> <span class="meta">{source.name}</span></div>
     {#if status === 'error'}
@@ -121,18 +129,18 @@
         {#each shown.slice(0, 3) as item (item.link)}
           <li><button class="link" onclick={() => tap(item)}>{item.title}</button></li>
         {:else}
-          <li class="muted">{status === 'loading' ? 'Loading headlines…' : 'No headlines yet.'}</li>
+          <li class="muted">{status === 'loading' ? t('loading') : t('noHeadlinesYet')}</li>
         {/each}
       </ul>
     {/if}
   {:else}
-    <h1>News</h1>
+    <header class="top"><h1>News</h1></header>
     <p class="muted">{source.name} · {source.language}</p>
 
-    {#if status === 'loading'}<p class="muted">Loading headlines…</p>{/if}
+    {#if status === 'loading'}<p class="muted">{t('loading')}</p>{/if}
     {#if status === 'error'}<section class="panel error">{message}</section>{/if}
     {#if status === 'ready' && !usedToday && settings.todayOnly}
-      <p class="muted">No headlines from today yet. These are the newest ones.</p>
+      <p class="muted">{t('noToday')}</p>
     {/if}
 
     <section class="panel list">
@@ -144,39 +152,43 @@
         </button>
       {/each}
     </section>
-    {#if fetchedAt}<p class="muted">Updated {when(new Date(fetchedAt))}</p>{/if}
-    <button class="ghost" onclick={() => load(true)}>Refresh</button>
+    {#if fetchedAt}<p class="muted">{t('updated', { when: when(new Date(fetchedAt)) })}</p>{/if}
+    <button class="ghost" onclick={() => load(true)}>{t('refresh')}</button>
 
-    <h2>Source</h2>
+    <h2>{t('sourceHead')}</h2>
     <div class="chips">
       {#each SOURCES as s (s.id)}
         <button class:active={settings.source === s.id} onclick={() => changeSetting('source', s.id)}>{s.name}</button>
       {/each}
     </div>
 
-    <h2>Headlines</h2>
+    <h2>{t('headlinesHead')}</h2>
     <div class="chips">
       {#each CHOICES.headlines as n (n)}
         <button class:active={settings.headlines === n} onclick={() => changeSetting('headlines', n)}>{n}</button>
       {/each}
     </div>
 
-    <h2>Tapping a headline</h2>
+    <h2>{t('tapHead')}</h2>
     <div class="chips">
-      <button class:active={settings.tapAction === 'article'} onclick={() => changeSetting('tapAction', 'article' as TapAction)}>Read the article</button>
-      <button class:active={settings.tapAction === 'note'} onclick={() => changeSetting('tapAction', 'note' as TapAction)}>Write a note</button>
+      <button class:active={settings.tapAction === 'article'} onclick={() => changeSetting('tapAction', 'article' as TapAction)}>{t('readArticle')}</button>
+      <button class:active={settings.tapAction === 'note'} onclick={() => changeSetting('tapAction', 'note' as TapAction)}>{t('writeNote')}</button>
     </div>
 
-    <h2>Show</h2>
+    <h2>{t('showHead')}</h2>
     <div class="chips">
-      <button class:active={settings.todayOnly} onclick={() => changeSetting('todayOnly', !settings.todayOnly)}>Today only</button>
-      <button class:active={settings.summaries} onclick={() => changeSetting('summaries', !settings.summaries)}>Summaries</button>
-      <button class:active={settings.showTime} onclick={() => changeSetting('showTime', !settings.showTime)}>Times</button>
+      <button class:active={settings.todayOnly} onclick={() => changeSetting('todayOnly', !settings.todayOnly)}>{t('todayOnly')}</button>
+      <button class:active={settings.summaries} onclick={() => changeSetting('summaries', !settings.summaries)}>{t('summaries')}</button>
+      <button class:active={settings.showTime} onclick={() => changeSetting('showTime', !settings.showTime)}>{t('times')}</button>
     </div>
   {/if}
 </div>
 
 <style>
+  /* the app's text: its iOS font stack (PLG-LF-07) */
+  :global(body) { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif; -webkit-font-smoothing: antialiased; --ios-font-rounded: ui-rounded, -apple-system, system-ui, sans-serif; }
+  /* the header is a Liquid Glass bar (D-glass): the title stays at the top, and the content scrolls under it */
+  .top { position: sticky; top: 0; z-index: 2; margin: -16px -16px 8px; padding: 16px 16px 10px; background: var(--glass-fill); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); border-bottom: 1px solid var(--glass-edge); }
   .card { box-sizing: border-box; min-height: 100vh; padding: 16px; background: var(--page); color: var(--text); font-size: calc(16px * var(--scale)); line-height: 1.4; }
   .card.widget { min-height: 0; padding: 12px; font-size: calc(14px * var(--scale)); }
   h1 { margin: 0; font-size: calc(26px * var(--scale)); font-weight: 700; }

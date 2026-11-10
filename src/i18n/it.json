@@ -1,0 +1,17 @@
+{
+ "loading": "Caricamento dei titoli…",
+ "noHeadlinesYet": "Ancora nessun titolo.",
+ "noToday": "Ancora nessun titolo di oggi. Questi sono i più recenti.",
+ "updated": "Aggiornato {when}",
+ "refresh": "Aggiorna",
+ "sourceHead": "Fonte",
+ "headlinesHead": "Titoli",
+ "tapHead": "Toccando un titolo",
+ "readArticle": "Leggi l’articolo",
+ "writeNote": "Scrivi una nota",
+ "showHead": "Mostra",
+ "todayOnly": "Solo oggi",
+ "summaries": "Riassunti",
+ "times": "Orari",
+ "notReadable": "Questo non è un feed leggibile."
+}

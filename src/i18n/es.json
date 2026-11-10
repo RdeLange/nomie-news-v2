@@ -1,0 +1,17 @@
+{
+ "loading": "Cargando titulares…",
+ "noHeadlinesYet": "Aún no hay titulares.",
+ "noToday": "Aún no hay titulares de hoy. Estos son los más recientes.",
+ "updated": "Actualizado {when}",
+ "refresh": "Actualizar",
+ "sourceHead": "Fuente",
+ "headlinesHead": "Titulares",
+ "tapHead": "Al tocar un titular",
+ "readArticle": "Leer el artículo",
+ "writeNote": "Escribir una nota",
+ "showHead": "Mostrar",
+ "todayOnly": "Solo hoy",
+ "summaries": "Resúmenes",
+ "times": "Horas",
+ "notReadable": "Este no es un feed legible."
+}
