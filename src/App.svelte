@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { startSnapshots } from './snapshot';
   import { onMount } from 'svelte';
   import { SOURCES, sourceById } from './sources';
   import { fetchFeed, todaysHeadlines, type Headline } from './feed';
@@ -100,6 +101,7 @@
       addToMoreMenu: true,
       addToWidgets: true,
     });
+    startSnapshots(plugin);
     onPrefsChange(plugin, () => applyNomieValues());
   plugin.onRegistered(async () => {
       applyNomieValues();
